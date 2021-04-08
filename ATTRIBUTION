@@ -1,0 +1,7 @@
+The WideResNet repository and source distributions include modified work derived from 
+other libraries that are compatibly licensed:
+
+Name: tensorflow
+Files: wideresnet/keras/_sgd.py
+License: Apache 2.0
+  For details, see wideresnet/keras/TENSORFLOW_LICENSE
