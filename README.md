@@ -23,7 +23,7 @@ pip install -r requirements.txt
 ### Keras
 
 The Keras implementation works with TensorFlow Datasets.
-```
+```python
 # Load the CIFAR10 Dataset
 import tensorflow_datasets as tfds
 train = tfds.load('cifar10', split='train', as_supervised=True)
@@ -41,7 +41,7 @@ model.fit(train, val=test)
 ### PyTorch
 
 The PyTorch implementation works with PyTorch's DataLoader.
-```
+```python
 # Ready the CIFAR10 Dataset
 import torchvision.datasets as tvds
 data = tvds.CIFAR10
