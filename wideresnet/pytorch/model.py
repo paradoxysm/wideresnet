@@ -1,3 +1,7 @@
+# Modified from wide-residual-networks/pytorch/*
+# Original Copyright 2016 Sergey Zagoruyko. All Rights Reserved.
+# Licensed under the BSD 2-Clause License
+
 # Authors: Jeffrey Wang
 # License: BSD 3 clause
 
