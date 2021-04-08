@@ -4,11 +4,11 @@
 [![Codecov](https://flat.badgen.net/codecov/c/github/paradoxysm/wideresnet?label=coverage)](https://codecov.io/gh/paradoxysm/wideresnet)
 [![GitHub](https://flat.badgen.net/github/license/paradoxysm/wideresnet)](https://github.com/paradoxysm/wideresnet/blob/master/LICENSE)
 
-Keras (TF2.4) and PyTorch (v1.8) implementations that are faithful to the original WideResNet proposed in [https://arxiv.org/abs/1605.07146](https://arxiv.org/abs/1605.07146) and implemented in [here](https://github.com/szagoruyko/wide-residual-networks).
+Keras (TensorFlow 2.4) and PyTorch (v1.8) implementations that are faithful to the original WideResNet proposed in [https://arxiv.org/abs/1605.07146](https://arxiv.org/abs/1605.07146) and implemented in [here](https://github.com/szagoruyko/wide-residual-networks).
 
 PyTorch implementation is nearly identical to the original, except without the use of Torchnet's Engine and is implemented within a class.
 
-Keras/Tensorflow implementation is built similarly in a class, but requires a number of auxiliary changes to underlying Tensorflow functions to properly replicate the PyTorch implementation. To the best of my knowledge, this is the most accurate publicly available re-implementation of the WideResNet in a framework other than torch.
+Keras/TensorFlow implementation is built similarly in a class, but requires a number of auxiliary changes to underlying TensorFlow functions to properly replicate the PyTorch implementation. To the best of my knowledge, this is the most accurate (faithful to the original implementation) publicly available re-implementation of the WideResNet in a framework other than torch.
 
 ## Installation
 
@@ -20,7 +20,40 @@ pip install -r requirements.txt
 
 ## Usage
 
-For full details on usage, see the [documentation](https://github.com/paradoxysm/wideresnet/tree/master/doc).
+### Keras
+
+The Keras implementation works with TensorFlow Datasets.
+```
+# Load the CIFAR10 Dataset
+import tensorflow_datasets as tfds
+train = tfds.load('cifar10', split='train', as_supervised=True)
+test = tfds.load('cifar10', split='test', as_supervised=True)
+
+# Create the model
+from wideresnet.keras import WideResNet
+from wideresnet import configs
+model = WideResNet(**configs['cifar10'])
+
+# Train and Validate the model
+model.fit(train, val=test)
+```
+
+### PyTorch
+
+The PyTorch implementation works with PyTorch's DataLoader.
+```
+# Ready the CIFAR10 Dataset
+import torchvision.datasets as tvds
+data = tvds.CIFAR10
+
+# Create the model
+from wideresnet.pytorch import WideResNet
+from wideresnet import configs
+model = WideResNet(**configs['cifar10'])
+
+# Train and Validate the model
+model.fit(data, val=data)
+```
 
 ## Changelog
 
@@ -30,7 +63,7 @@ See the [changelog](https://github.com/paradoxysm/wideresnet/blob/master/CHANGES
 
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/paradoxysm/wideresnet?style=flat-square)](https://codeclimate.com/github/paradoxysm/wideresnet/maintainability)
 
-`wideresnet` has been worked on with the CIFAR10 dataset and is complete in this regard. It was not fully validated in it's reproducibility of other datasets compared to the original. Finally, the Tensorflow changes to the SGD optimizer only include within the scope of its use for WideResNet (i.e. weight decay and Nesterov momentum for dense tensors). Sparse tensors or non-momentum SGD are implemented in the original Tensorflow manner. Any help on rectifying that gap would be appreciated!
+`wideresnet` has been worked on with the CIFAR10 dataset and is complete in this regard. It was not fully validated in it's reproducibility of other datasets compared to the original. Finally, the TensorFlow changes to the SGD optimizer only include within the scope of its use for WideResNet (i.e. weight decay and Nesterov momentum for dense tensors). Sparse tensors or non-momentum SGD are implemented in the original TensorFlow manner. Any help on rectifying that gap would be appreciated!
 
 ## Help and Support
 

@@ -1,0 +1,26 @@
+configs = {
+	"cifar10": {
+		"depth":				28,
+		"width":				10,
+		"epochs":				200,
+		"batch_size":			128,
+		"lr":					0.1,
+		"lr_decay":				0.2,
+		"schedule":				"60|120|160",
+		"dropout":				0.3,
+		"preprocess_method":	"cifar10",
+		"seed":					None,
+	},
+	"svhn": {
+		"depth":				16,
+		"width":				8,
+		"epochs":				160,
+		"batch_size":			128,
+		"lr":					0.01,
+		"lr_decay":				0.1,
+		"schedule":				"80|120",
+		"dropout":				0.4,
+		"preprocess_method":	None,
+		"seed":					None,
+	},
+}

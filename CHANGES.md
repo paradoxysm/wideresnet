@@ -9,4 +9,5 @@
 - ![Documentation](https://img.shields.io/badge/-Documentation-blue?style=flat-square) : An update to the documentation.
 - ![Other](https://img.shields.io/badge/-Other-lightgrey?style=flat-square) : Miscellaneous updates such as package structure or GitHub quality of life updates.
 
-### Version 0.1.0
+### Version 1.0.0
+- ![Feature](https://img.shields.io/badge/-Feature-blueviolet?style=flat-square) : Keras and PyTorch implementations released.
