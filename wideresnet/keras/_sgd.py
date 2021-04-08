@@ -1,4 +1,8 @@
-# Authors: Jeffrey Wang
+# Modified from tensorflow/python/keras/optimizer_v2/gradient_descent.py 
+# Original Copyright 2020 The TensorFlow Authors. All Rights Reserved.
+# Licensed under the Apache License, Version 2.0 (the "License")
+
+# Authors of Modified Work: Jeffrey Wang
 # License: BSD 3 clause
 
 from tensorflow.python.framework import ops
