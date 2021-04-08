@@ -22,7 +22,7 @@ setup(
 	install_requires=[
 		torch==1.8.1+cu102,
 		torchvision==0.9.1+cu102,
-		tensorflow=2.4.1,
+		tensorflow==2.4.1,
 		tqdm,
 		numpy,
     ],
