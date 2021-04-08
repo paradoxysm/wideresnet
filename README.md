@@ -10,6 +10,21 @@ PyTorch implementation is nearly identical to the original, except without the u
 
 Keras/TensorFlow implementation is built similarly in a class, but requires a number of auxiliary changes to underlying TensorFlow functions to properly replicate the PyTorch implementation. To the best of my knowledge, this is the most accurate (faithful to the original implementation) publicly available re-implementation of the WideResNet in a framework other than torch.
 
+### Replicating WideResNet: Implementation Details
+
+In order for a Keras/TensorFlow implementation to accurately follow the original PyTorch implementation, the following needs to be considered:
+ * ***Weight Initialization***: 
+   * WideResNet uses a Kaiming/He Normal initialization; this is not default behaviour
+   * TensorFlow's He Normal is a truncated form while Pytorch implements an untruncated form as Kaiming Normal
+ * ***Bias Initialization***: WideResNet does not use biases in the convolutional layers; this is not default behaviour
+ * ***Padding***: TensorFlow Convolution Layers do not have capacity for explicit padding; a ZeroPadding2D Layer must precede it
+ * ***Batch Normalization***:
+    * WideResNet initializes weights/gamma from a uniform distribution; this is not default behaviour
+    * TensorFlow uses an epsilon of 1e-3 and a momentum of 0.99; PyTorch uses an epsilon of 1e-5 and a "momentum" of 0.1 (TensorFlow equivalent of 0.9)
+ * ***Shuffling***: TensorFlow does not truly shuffle the same way as PyTorch unless the buffer is the size of the entire dataset
+ * ***Weight Decay***: TensorFlow has no global weight decay like PyTorch; Implement L2 Regularizers for both kernels/weights and biases for ALL trainable layers (i.e. Conv2D, BatchNorm, Dense). Alternatively, implement a custom SGD optimizer.
+ * ***SGD with Momentum***: PyTorch implements momentum differently from Sutskever et. al. and TensorFlow to the effect that the moving average of momentum is invariant to changes in learning rate.
+
 ## Installation
 
 Once you have a suitable python environment setup, and this repository has been downloaded locally, `wideresnet` can be easily installed using `pip`:
