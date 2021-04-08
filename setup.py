@@ -9,18 +9,21 @@ def read(*paths):
         return f.read()
 
 setup(
-	name='pypkg',
+	name='wideresnet',
 	version='1.0.0',
-	description='Python Package Template Repository',
+	description='Wide Residual Networks in Keras and PyTorch',
 	long_description=(read('README.md') + '\n\n'),
 	long_description_content_type="text/markdown",
-	url='http://github.com/paradoxysm/pypkg',
+	url='http://github.com/paradoxysm/wideresnet',
 	author='paradoxysm',
 	author_email='paradoxysm.dev@gmail.com',
 	license='BSD-3-Clause',
 	packages=find_packages(),
 	install_requires=[
-
+		torch==1.8.1+cu102,
+		torchvision==0.9.1+cu102
+		tqdm,
+		numpy,
     ],
 	python_requires='>=3.5, <4',
 	classifiers=[
@@ -35,5 +38,5 @@ setup(
 	'Programming Language :: Python :: 3.7',
 	'Programming Language :: Python :: 3.8',
     ],
-	keywords=['python'],
+	keywords=['python', 'ml', 'neural-networks', 'keras', 'tensorflow', 'pytorch', 'reproducibility'],
     zip_safe=True)
