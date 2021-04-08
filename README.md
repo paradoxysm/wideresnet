@@ -16,7 +16,7 @@ Once you have a suitable python environment setup, and this repository has been 
 ```
 pip install -r requirements.txt
 ```
-> `wideresnet` is tested and supported on Python 3.5 up to Python 3.8. Usage on other versions of Python is not guaranteed to work as intended.
+> `wideresnet` is tested and supported on Python 3.6 up to Python 3.8. Usage on other versions of Python is not guaranteed to work as intended.
 
 ## Usage
 
