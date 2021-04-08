@@ -31,7 +31,6 @@ class WideResNet:
 		self.batch_size = batch_size
 		self.preprocess_method = preprocess_method
 		self.np_rng = np.random.RandomState(seed=seed)
-		self.logging = logging
 
 	def fit(self, train, val=None):
 		train = self.preprocess(train, train=True)
@@ -88,14 +87,7 @@ class WideResNet:
 			val_err = 1 - val_correct / val_total
 			val_loss /= val_total
 			print("\tValidation - Loss: %.4f, Error: %.4f" % (val_loss, val_err))
-			if self.logging:
-				wandb.log({'epoch': e,
-							'loss': avg_loss,
-							'error': avg_err,
-							'val_loss': val_loss,
-							'val_error': val_err,
-							'lr': lr})
-
+			
 	def preprocess(self, ds, method=None, train=False):
 		transform = T.Compose([T.ToTensor()])
 		if self.preprocess_method == "cifar10":
