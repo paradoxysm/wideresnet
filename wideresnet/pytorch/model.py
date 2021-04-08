@@ -16,7 +16,7 @@ class WideResNet:
 					depth=16, width=8, lr=0.01, lr_decay=1,
 					schedule=None, momentum=0.9, dropout=0.4, weight_decay=0.0005,
 					epochs=100, batch_size=128, preprocess_method=None,
-					logging=False, seed=None):
+					seed=None):
 		self.input_shape = input_shape
 		self.n_classes = n_classes
 		self.depth = depth
@@ -87,7 +87,7 @@ class WideResNet:
 			val_err = 1 - val_correct / val_total
 			val_loss /= val_total
 			print("\tValidation - Loss: %.4f, Error: %.4f" % (val_loss, val_err))
-			
+
 	def preprocess(self, ds, method=None, train=False):
 		transform = T.Compose([T.ToTensor()])
 		if self.preprocess_method == "cifar10":

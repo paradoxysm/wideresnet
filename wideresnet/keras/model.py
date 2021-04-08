@@ -20,9 +20,9 @@ from wideresnet.keras import KaimingNormal, SGDtorch
 class WideResNet:
 	def __init__(self, input_shape=(32,32,3), n_classes=10,
 					depth=16, width=8, lr=0.01, lr_decay=1,
-					schedule=None, dropout=0.4, weight_decay=0.0005,
+					schedule=None, momentum=0.9, dropout=0.4, weight_decay=0.0005,
 					epochs=100, batch_size=128, preprocess_method=None,
-					logging=False, seed=None):
+					seed=None):
 		self.input_shape = input_shape
 		self.n_classes = n_classes
 		self.depth = depth
@@ -30,6 +30,7 @@ class WideResNet:
 		self.lr = lr
 		self.lr_decay = lr_decay
 		self.schedule = [] if schedule is None else list(map(int, schedule.split("|")))
+		self.momentum = momentum
 		self.dropout = dropout
 		self.weight_decay = weight_decay
 		self.epochs = epochs
@@ -122,7 +123,7 @@ class WideResNet:
 		wrn = Dense(self.n_classes, kernel_initializer=weight_init())(wrn)
 		wrn = Activation('softmax')(wrn)
 		model = Model(inputs=in_layer, outputs=wrn)
-		sgd = SGDtorch(lr=self.lr, momentum=0.9, nesterov=True, weight_decay=self.weight_decay)
+		sgd = SGDtorch(lr=self.lr, momentum=self.momentum, nesterov=True, weight_decay=self.weight_decay)
 		model.compile(optimizer=sgd, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 		return model
 
