@@ -77,7 +77,6 @@ class SGDtorch(optimizer_v2.OptimizerV2):
 				use_locking=self._use_locking)
 
 	def _resource_apply_sparse_duplicate_indices(self, grad, var, indices, **kwargs):
-		raise NotImplementedError("Resource Apply Sparse")
 		if self._momentum:
 			return super(SGD, self)._resource_apply_sparse_duplicate_indices(
 				grad, var, indices, **kwargs)
@@ -93,7 +92,6 @@ class SGDtorch(optimizer_v2.OptimizerV2):
 
 	def _resource_apply_sparse(self, grad, var, indices, apply_state=None):
 		# This method is only needed for momentum optimization.
-		raise NotImplementedError("Resource Apply Sparse")
 		var_device, var_dtype = var.device, var.dtype.base_dtype
 		coefficients = ((apply_state or {}).get((var_device, var_dtype))
 						or self._fallback_apply_state(var_device, var_dtype))
